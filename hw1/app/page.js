@@ -2,6 +2,7 @@
 import styles from "./page.module.css";
 import {useEffect, useState } from "react";
 import axios from 'axios';
+import NavBar from "./navigationBar";
 
 const POSTS_PER_PAGE = 10;
 const NOTES_URL = 'http://localhost:3001/notes'; 
