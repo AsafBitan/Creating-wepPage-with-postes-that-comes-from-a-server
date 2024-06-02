@@ -9,8 +9,8 @@
   flex-wrap: wrap;
   gap: 20px;
 }
-.noteContainer {
-  background-color: #777cff;
+.post {
+  background-color: #6d72fb;
   border: 1px solid #000000;
   border-radius: 8px;
   padding: 10px;
@@ -20,27 +20,27 @@
   transition: transform 0.2s;
 }
 
-.noteContainer:hover {
+.post:hover {
   transform: translateY(-5px);
 }
 
-.noteHeader {
+.postHeader {
   border-bottom: 1px solid #ffffff;
   margin-bottom: 10px;
   padding-bottom: 10px;
 }
 
-.noteHeader h1 {
+.postHeader h1 {
   font-size: 1.5em;
   margin: 0;
 }
 
-.noteHeader p {
+.postHeader p {
   margin: 5px 0;
   color: #000000;
 }
 
-.noteContent p {
+.postContent p {
   color: #000000;
 }
 
