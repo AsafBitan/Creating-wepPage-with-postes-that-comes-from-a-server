@@ -50,8 +50,10 @@ export default function Home() {
     else {
       return [activePage-2, activePage-1, activePage, activePage+1, activePage+2];
     }
-  }
-  const pages = currentFivePages(totalPages, activePage); 
+  };
+
+  const pages = currentFivePages(totalPages, activePage);
+
   return (
     <main className={styles.main}>
       <div className={styles.description}>
