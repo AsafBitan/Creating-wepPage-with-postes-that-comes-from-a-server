@@ -61,6 +61,7 @@ export default function Home() {
             <Post key={post.id} post={post} />
         ))}
       </div>
+      
       <NavBar
         pages={pages}
         activePage={activePage}
