@@ -7,6 +7,20 @@ import NavBar from "./navigationBar";
 const POSTS_PER_PAGE = 10;
 const NOTES_URL = 'http://localhost:3001/notes'; 
 
+const Post = ({ post }) => (
+  <div className={styles.post}>
+    <div className={styles.postHeader}>
+      <h1>{post.title}</h1>
+      <p>Author: {post.author.name}</p>
+      <p>Email: {post.author.email}</p>
+    </div>
+    <div className={styles.postContent}> 
+      <p>{post.content}</p>
+    </div>
+  </div>
+
+);
+
 export default function Home() {
   const [posts, setPosts] = useState([]);
   const [activePage, setActivePage] = useState(1);
@@ -42,18 +56,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.description}>
         {posts.map(post => (
-          <div key={post.id} className={styles.post}>
-            <div className={styles.postHeader}>
-            <h1>{post.title}</h1>
-            <p>Author: {post.author.name}</p>
-            <p>Email: {post.author.email}</p>
-            </div>
-            <div className={styles.postContent}>
-              <p>
-                {post.content}
-              </p>
-            </div>
-          </div>
+            <Post key={post.id} post={post} />
         ))}
       </div>
       <NavBar
