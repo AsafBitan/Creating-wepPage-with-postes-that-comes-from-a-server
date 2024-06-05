@@ -26,29 +26,18 @@ export default function Home() {
         setTotalPages(Math.ceil(response.headers['x-total-count']/POSTS_PER_PAGE))
     }).catch(error => { console.log("Encountered an error:" + error)});
   });
-
-  const pages = Array.from({length: totalPages}, (_, i) => i+1);
-  
-  function goToFirstPage(){
-    setActivePage(1);
-  };
-
-  const goToPrevPage = () => {
-    setActivePage(prevPage => Math.max(prevPage - 1, 1));
-  };
-
-  function goToPage(index){
-    setActivePage(index)
-  };
-
-  function goToNextPage(){
-    setActivePage(nextPage => Math.min(nextPage + 1, totalPages))
-  };
-
-  function goToLastPage(){
-    setActivePage(totalPages)
-  };
-
+  const currentFivePages = (totalPages, activePage) => {
+    if (activePage <= 2 || totalPages <= 5){
+      return Array.from({length: Math.min(totalPages, 5)}, (_, i) => i+1);
+    }
+    else if (activePage >= (totalPages -2)){
+      return [totalPages-4,totalPages-3,totalPages-2,totalPages-1,totalPages];
+    }
+    else {
+      return [activePage-2, activePage-1, activePage, activePage+1, activePage+2];
+    }
+  }
+  const pages = currentFivePages(totalPages, activePage); 
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -67,40 +56,12 @@ export default function Home() {
           </div>
         ))}
       </div>
-      
-      <div>
-      <button className={styles.button} name="first" onClick={goToFirstPage}>First</button>
-        <button className={styles.button} name="previous" onClick={goToPrevPage}>Previous</button>
-        {(totalPages <= 5 || activePage === 1 || activePage === 2) ? 
-                pages.map(i => (i <= 5) ? ( 
-              <button key={i}
-              className={`${styles.button} ${activePage === i ? styles.boldButton : ''}`}
-                name={'page' + '' + i}
-                onClick={() => goToPage(i)}>
-                  {i}
-              </button>
-              ): "") 
-        : (activePage === totalPages-1 || activePage === totalPages) ? 
-              [totalPages-4,totalPages-3,totalPages-2,totalPages-1,totalPages].map(i => (
-                <button key={i}
-                className={`${styles.button} ${activePage === i ? styles.boldButton : ''}`}
-                  name={'page' + '' + i}
-                  onClick={() => goToPage(i)}>
-                    {i}
-                </button>
-                ))  
-        : [activePage-2,activePage-1,activePage,activePage+1,activePage+2].map(i => (
-          <button key={i}
-          className={`${styles.button} ${activePage === i ? styles.boldButton : ''}`}
-            name={'page' + '' + i}
-            onClick={() => goToPage(i)}>
-              {i}
-          </button>
-          )) }
-        
-      <button className={styles.button} name="next" onClick={goToNextPage}>Next</button>
-      <button className={styles.button} name="last" onClick={goToLastPage}>Last</button>
-      </div>
+      <NavBar
+        pages={pages}
+        activePage={activePage}
+        totalPages={totalPages}
+        setActivePage={setActivePage}
+        />
     </main>
   );
 }
