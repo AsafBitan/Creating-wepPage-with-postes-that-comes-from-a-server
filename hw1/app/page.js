@@ -18,7 +18,6 @@ const Post = ({ post }) => (
       <p>{post.content}</p>
     </div>
   </div>
-
 );
 
 export default function Home() {
@@ -40,6 +39,7 @@ export default function Home() {
         setTotalPages(Math.ceil(response.headers['x-total-count']/POSTS_PER_PAGE))
     }).catch(error => { console.log("Encountered an error:" + error)});
   });
+
   const currentFivePages = (totalPages, activePage) => {
     if (activePage <= 2 || totalPages <= 5){
       return Array.from({length: Math.min(totalPages, 5)}, (_, i) => i+1);
