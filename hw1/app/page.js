@@ -46,7 +46,7 @@ export default function Home() {
       .catch((error) => {
         console.log("Encountered an error:" + error);
       });
-  });
+  }, [activePage, POSTS_PER_PAGE]); // Adding dependency array so it won't rerender every render cycle
 
   const currentFivePages = (totalPages, activePage) => {
     // Desiding what buttons to other pages to show depending on the total pages and the active page
