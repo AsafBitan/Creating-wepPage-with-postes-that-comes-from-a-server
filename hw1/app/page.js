@@ -49,7 +49,7 @@ export default function Home() {
   }, [activePage, POSTS_PER_PAGE]); // Adding dependency array so it won't rerender every render cycle
 
   const currentFivePages = (totalPages, activePage) => {
-    // Desiding what buttons to other pages to show depending on the total pages and the active page
+    // Deciding what buttons to other pages to show depending on the total pages and the active page
     if (activePage <= 2 || totalPages <= 5) {
       return Array.from({ length: Math.min(totalPages, 5) }, (_, i) => i + 1);
     } else if (activePage >= totalPages - 2) {
@@ -80,7 +80,7 @@ export default function Home() {
           <Post key={post.id} post={post} />
         ))}
       </div>
-      {/* NavBar will handel all the navagation and its layout */}
+      {/* NavBar will handle all the navigation and its layout */}
       <NavBar
         pages={pages}
         activePage={activePage}
