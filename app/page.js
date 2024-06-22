@@ -6,9 +6,9 @@ import NavBar from "./navigationBar";
 
 const POSTS_PER_PAGE = 10;
 const NOTES_URL = "http://localhost:3001/notes";
-// How the post will look.
+// How the post will look. with post
 const Post = ({ post }) => (
-  <div className="post">
+  <div className="post"> 
     <div className={styles.postHeader}>
       <h1>{post.title}</h1>
       <p>Author: {post.author.name}</p>
