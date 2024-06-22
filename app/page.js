@@ -8,7 +8,7 @@ const POSTS_PER_PAGE = 10;
 const NOTES_URL = "http://localhost:3001/notes";
 // How the post will look.
 const Post = ({ post }) => (
-  <div className={styles.post}>
+  <div className="post">
     <div className={styles.postHeader}>
       <h1>{post.title}</h1>
       <p>Author: {post.author.name}</p>
